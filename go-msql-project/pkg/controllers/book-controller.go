@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"/usr/local/go/src/go-msql-projects/pkg/models"
-	"/usr/local/go/src/go-msql-projects/pkg/utils"
 	"encoding/json"
 	"fmt"
+	"go-mysql-project/pkg/models"
+	"go-mysql-project/pkg/utils"
 	"net/http"
 	"strconv"
 
@@ -60,7 +60,7 @@ func DeleteBook(w http.ResponseWriter, r *http.Request) {
 
 func UpdateBook(w http.ResponseWriter, r *http.Request) {
 	var updateBook = &models.Book{}
-	utils.Parse(r, updateBook)
+	utils.ParseBody(r, updateBook)
 	vars := mux.Vars(r)
 	bookId := vars["bookId"]
 	ID, err := strconv.ParseInt(bookId, 0, 0)

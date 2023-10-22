@@ -1,7 +1,7 @@
 package models
 
 import (
-	"/usr/local/go/src/go-msql-projects/pkg/config"
+	"go-mysql-project/pkg/config"
 
 	"github.com/jinzhu/gorm"
 )
@@ -12,7 +12,7 @@ type Book struct {
 	gorm.Model
 	Name        string `gorm:""json:"name"`
 	Author      string `json:"author"`
-	Punlication string `json:"publication"`
+	Publication string `json:"publication"`
 }
 
 func init() {
@@ -40,7 +40,7 @@ func GetBookById(Id int64) (*Book, *gorm.DB) {
 	return &getBook, db
 }
 
-func deleteBook(ID int64) Book {
+func DeleteBook(ID int64) Book {
 	var book Book
 	db.Where("ID=?", ID).Delete(book)
 	return book
