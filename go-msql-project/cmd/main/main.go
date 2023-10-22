@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go-msql-projects/pkg/routes"
+	"go-mysql-project/pkg/routes"
 	"log"
 	"net/http"
 
