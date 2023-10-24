@@ -18,7 +18,10 @@ type UserController struct {
 	client *mongo.Client
 }
 
-func NewUserController(client *mongo.Client) *UserController {
+func NewUserController(client *mongo.Client, err error) *UserController {
+	if err != nil {
+		fmt.Println("Error connecting to MongoDB:", err)
+	}
 	return &UserController{client}
 }
 
