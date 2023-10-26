@@ -20,16 +20,8 @@ func main() {
 	http.ListenAndServe("localhost:9000", r)
 }
 
-// func getSession() *mgo.Session {
-// 	s, err := mgo.Dial("mongodb://localhost:27107")
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	return s
-// }
-
 func getSession() (*mongo.Client, error) {
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017") // Adjust the URI as needed
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		return nil, err
