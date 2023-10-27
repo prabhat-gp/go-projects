@@ -15,8 +15,8 @@ import (
 )
 
 type response struct {
-	ID      int64  `json:"id, omitempty"`
-	Message string `"json:"message, omitempty"`
+	ID      int64  `json:"id,omitempty"`
+	Message string `json:"message,omitempty"`
 }
 
 func createConnection() *sql.DB {
@@ -44,7 +44,7 @@ func CreateStock(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(&stock)
 
 	if err != nil {
-		log.Fatal("Unable to decode the request body. %v", err)
+		log.Fatalf("Unable to decode the request body. %v", err)
 	}
 
 	insertID := insertStock(stock)
@@ -62,7 +62,7 @@ func GetStock(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(params["id"])
 
 	if err != nil {
-		log.Fatal("Unable to convert the string to int. %v", err)
+		log.Fatalf("Unable to convert the string to int. %v", err)
 	}
 
 	stock, err := getStock(int64(id))
@@ -197,14 +197,14 @@ func updateStock(id int64, stock models.Stock) int64 {
 	res, err := db.Exec(sqlStatement, id, stock.Name, stock.Price, stock.Company)
 
 	if err != nil {
-		log.Fatalf("Unable to execute the query %v")
+		log.Fatalf("Unable to execute the query %v", err)
 	}
 
 	rowsAffected, err := res.RowsAffected()
 	if err != nil {
 		log.Fatalf("Error while checking the affected rows. %v", err)
 	}
-	fmt.Println("Total rows/records affeccted %v", rowsAffected)
+	fmt.Printf("Total rows/records affeccted %v", rowsAffected)
 	return rowsAffected
 }
 
@@ -215,13 +215,13 @@ func deleteStock(id int64) int64 {
 
 	res, err := db.Exec(sqlStatement, id)
 	if err != nil {
-		log.Fatal("Unable to execute the query %v", err)
+		log.Fatalf("Unable to execute the query %v", err)
 	}
 
 	rowsAffected, err := res.RowsAffected()
 	if err != nil {
 		log.Fatalf("Error while checking the affected rows. %v", err)
 	}
-	fmt.Println("Total rows/records affeccted %v", rowsAffected)
+	fmt.Printf("Total rows/records affeccted %v", rowsAffected)
 	return rowsAffected
 }
