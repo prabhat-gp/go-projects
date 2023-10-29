@@ -80,3 +80,5 @@ func main() {
 		panic(err)
 	}
 }
+
+// http://localhost:8080/weather/delhi

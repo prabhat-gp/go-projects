@@ -9,19 +9,6 @@ import (
 	"strings"
 )
 
-func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-	fmt.Printf("domain, hasMX, hasSPF, spfRecord, hasDMARC, dmarcRecord \n")
-
-	for scanner.Scan() {
-		checkDomain(scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatalf("Error: could not read the input: %v\n", err)
-	}
-}
-
 func checkDomain(domain string) {
 	var hasMX, hasSPF, hasDMARC bool
 	var spfRecord, dmarcRecord string
@@ -62,4 +49,17 @@ func checkDomain(domain string) {
 	}
 
 	fmt.Printf("%v, %v, %v, %v, %v, %v", domain, hasMX, hasSPF, spfRecord, hasDMARC, dmarcRecord)
+}
+
+func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Printf("domain, hasMX, hasSPF, spfRecord, hasDMARC, dmarcRecord \n")
+
+	for scanner.Scan() {
+		checkDomain(scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Fatalf("Error: could not read the input: %v\n", err)
+	}
 }
