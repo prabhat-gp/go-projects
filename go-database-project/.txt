@@ -1,0 +1,16 @@
+Logic to create data types
+Logic to write data to db
+Logic to create files
+Logic to write into files
+
+
+Logic to read a single record from db 
+Logic to read all records from db 
+Logic to delete a single record from db 
+Logic to delete all records from db 
+
+
+Struct Methods 
+Driver -> read all, read, delete, delete all, write 
+
+Data Integrity Issues = write, delete
